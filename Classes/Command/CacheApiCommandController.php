@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Command;
+namespace Etobi\Coreapi\Command;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +31,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class CacheApiCommandController extends CommandController {
 	/**
@@ -61,16 +61,16 @@ class CacheApiCommandController extends CommandController {
 	}
 
 	/**
-	 * @var \Etobi\CoreAPI\Service\CacheApiService
+	 * @var \Etobi\Coreapi\Service\CacheApiService
 	 */
 	protected $cacheApiService;
 
 	/**
 	 * Inject the CacheApiService
 	 *
-	 * @param \Etobi\CoreAPI\Service\CacheApiService $cacheApiService
+	 * @param \Etobi\Coreapi\Service\CacheApiService $cacheApiService
 	 */
-	public function injectCacheApiService(\Etobi\CoreAPI\Service\CacheApiService $cacheApiService) {
+	public function injectCacheApiService(\Etobi\Coreapi\Service\CacheApiService $cacheApiService) {
 		$this->cacheApiService = $cacheApiService;
 	}
 

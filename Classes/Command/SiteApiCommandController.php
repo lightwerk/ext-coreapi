@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Command;
+namespace Etobi\Coreapi\Command;
 
 /***************************************************************
  *  Copyright notice
@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class SiteApiCommandController extends CommandController {
 
@@ -63,18 +63,18 @@ class SiteApiCommandController extends CommandController {
 	}
 
 	/**
-	 * @var \Etobi\CoreAPI\Service\SiteApiService
+	 * @var \Etobi\Coreapi\Service\SiteApiService
 	 */
 	protected $siteApiService;
 
 	/**
 	 * Inject the SiteApiService
 	 *
-	 * @param \Etobi\CoreAPI\Service\SiteApiService $siteApiService
+	 * @param \Etobi\Coreapi\Service\SiteApiService $siteApiService
 	 *
 	 * @return void
 	 */
-	public function injectSiteApiService(\Etobi\CoreAPI\Service\SiteApiService $siteApiService) {
+	public function injectSiteApiService(\Etobi\Coreapi\Service\SiteApiService $siteApiService) {
 		$this->siteApiService = $siteApiService;
 	}
 

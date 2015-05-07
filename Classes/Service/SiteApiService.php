@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -34,7 +34,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
  * @author Claus Due <claus@wildside.dk>, Wildside A/S
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class SiteApiService {
 
@@ -136,8 +136,8 @@ class SiteApiService {
 	 * @return array
 	 */
 	public function getCountOfExtensions($data) {
-		/** @var \Etobi\CoreAPI\Service\ExtensionApiService $extensionService */
-		$extensionService = $this->objectManager->get('Etobi\\CoreAPI\\Service\\ExtensionApiService');
+		/** @var \Etobi\Coreapi\Service\ExtensionApiService $extensionService */
+		$extensionService = $this->objectManager->get('Etobi\\Coreapi\\Service\\ExtensionApiService');
 		$extensions = $extensionService->listExtensions('Local');
 		$data['Count local installed extensions'] = count($extensions);
 

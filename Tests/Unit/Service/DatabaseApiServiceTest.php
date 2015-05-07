@@ -1,6 +1,6 @@
 <?php
 
-namespace Etobi\CoreApi\Tests\Unit\Service;
+namespace Etobi\Coreapi\Tests\Unit\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -33,14 +33,14 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 /**
  * Class DatabaseApiServiceTest
  * 
- * @package Etobi\CoreApi\Tests\Unit\Service
+ * @package Etobi\Coreapi\Tests\Unit\Service
  * @author  Stefano Kowalke <blueduck@gmx.net>
- * @coversDefaultClass \Etobi\CoreAPI\Service\DatabaseApiService
+ * @coversDefaultClass \Etobi\Coreapi\Service\DatabaseApiService
  */
 class DatabaseApiServiceTest extends UnitTestCase {
 
 	/**
-	 * @var \Etobi\CoreApi\Service\DatabaseApiService|\PHPUnit_Framework_MockObject_MockObject $subject
+	 * @var \Etobi\Coreapi\Service\DatabaseApiService|\PHPUnit_Framework_MockObject_MockObject $subject
 	 */
 	protected $subject;
 
@@ -53,7 +53,7 @@ class DatabaseApiServiceTest extends UnitTestCase {
 	 * Setup the test
 	 */
 	public function setup() {
-		$this->subject = $this->getMock('Etobi\\CoreApi\\Service\\DatabaseApiService', array('dummy'));
+		$this->subject = $this->getMock('Etobi\\Coreapi\\Service\\DatabaseApiService', array('dummy'));
 		$this->objectManagerMock = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array('get'));
 	}
 
@@ -69,8 +69,8 @@ class DatabaseApiServiceTest extends UnitTestCase {
 	 * @covers ::databaseCompare
 	 */
 	public function databaseCompareCreatesDatabaseCompareRealObjectWhenNoDryRunIsDemanded() {
-		$comparator = $this->getMock('Etobi\\CoreAPI\\Service\\DatabaseCompareReal');
-		$this->objectManagerMock->expects($this->once())->method('get')->with('Etobi\\CoreAPI\\Service\\DatabaseCompareReal')->will($this->returnValue($comparator));
+		$comparator = $this->getMock('Etobi\\Coreapi\\Service\\DatabaseCompareReal');
+		$this->objectManagerMock->expects($this->once())->method('get')->with('Etobi\\Coreapi\\Service\\DatabaseCompareReal')->will($this->returnValue($comparator));
 
 		$this->subject->injectObjectManager($this->objectManagerMock);
 		$this->subject->databaseCompare(1, FALSE);
@@ -81,8 +81,8 @@ class DatabaseApiServiceTest extends UnitTestCase {
 	 * @covers ::databaseCompare
 	 */
 	public function databaseCompareCreatesDatabaseCompareDryObjectWhenDryRunIsDemanded() {
-		$comparator = $this->getMock('Etobi\\CoreAPI\\Service\\DatabaseCompareDry');
-		$this->objectManagerMock->expects($this->once())->method('get')->with('Etobi\\CoreAPI\\Service\\DatabaseCompareDry')->will($this->returnValue($comparator));
+		$comparator = $this->getMock('Etobi\\Coreapi\\Service\\DatabaseCompareDry');
+		$this->objectManagerMock->expects($this->once())->method('get')->with('Etobi\\Coreapi\\Service\\DatabaseCompareDry')->will($this->returnValue($comparator));
 
 		$this->subject->injectObjectManager($this->objectManagerMock);
 		$this->subject->databaseCompare(1, TRUE);
@@ -94,8 +94,8 @@ class DatabaseApiServiceTest extends UnitTestCase {
 	 * @covers ::databaseCompare
 	 */
 	public function databaseCompareOneAction() {
-		$comparator = $this->getMock('Etobi\\CoreAPI\\Service\\DatabaseCompareReal');
-		$this->objectManagerMock->expects($this->once())->method('get')->with('Etobi\\CoreAPI\\Service\\DatabaseCompareReal')->will($this->returnValue($comparator));
+		$comparator = $this->getMock('Etobi\\Coreapi\\Service\\DatabaseCompareReal');
+		$this->objectManagerMock->expects($this->once())->method('get')->with('Etobi\\Coreapi\\Service\\DatabaseCompareReal')->will($this->returnValue($comparator));
 		$this->subject->injectObjectManager($this->objectManagerMock);
 
 		$this->subject->databaseCompare('1', FALSE);

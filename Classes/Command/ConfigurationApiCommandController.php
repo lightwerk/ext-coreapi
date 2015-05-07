@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Command;
+namespace Etobi\Coreapi\Command;
 
 /***************************************************************
  *  Copyright notice
@@ -35,7 +35,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 class ConfigurationApiCommandController extends CommandController {
 
 	/**
-	 * @var \Etobi\CoreAPI\Service\ConfigurationApiService
+	 * @var \Etobi\Coreapi\Service\ConfigurationApiService
 	 * @inject
 	 */
 	protected $configurationApiService;

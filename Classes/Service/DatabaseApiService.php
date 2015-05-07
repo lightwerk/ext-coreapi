@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -32,7 +32,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class DatabaseApiService {
 
@@ -42,7 +42,7 @@ class DatabaseApiService {
 	protected $objectManager;
 
 	/**
-	 * @var \Etobi\CoreAPI\Service\DatabaseComparator $comparator
+	 * @var \Etobi\Coreapi\Service\DatabaseComparator $comparator
 	 */
 	protected $comparator = NULL;
 
@@ -66,9 +66,9 @@ class DatabaseApiService {
 	 */
 	public function databaseCompare($actions, $dry) {
 		if ($dry) {
-			$this->comparator = $this->objectManager->get('Etobi\\CoreAPI\\Service\\DatabaseCompareDry');
+			$this->comparator = $this->objectManager->get('Etobi\\Coreapi\\Service\\DatabaseCompareDry');
 		} else {
-			$this->comparator = $this->objectManager->get('Etobi\\CoreAPI\\Service\\DatabaseCompareReal');
+			$this->comparator = $this->objectManager->get('Etobi\\Coreapi\\Service\\DatabaseCompareReal');
 		}
 
 		try {
@@ -86,7 +86,7 @@ class DatabaseApiService {
 	 * @return array
 	 */
 	public function databaseCompareAvailableActions() {
-		$availableActions = array_flip($this->objectManager->get('TYPO3\\CMS\\Extbase\\Reflection\\ClassReflection', 'Etobi\\CoreAPI\\Service\\DatabaseComparator')->getConstants());
+		$availableActions = array_flip($this->objectManager->get('TYPO3\\CMS\\Extbase\\Reflection\\ClassReflection', 'Etobi\\Coreapi\\Service\\DatabaseComparator')->getConstants());
 
 		foreach ($availableActions as $number => $action) {
 			if (!$this->isFirstPartOfString($action, 'ACTION_')) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Etobi\CoreApi\Tests\Unit\Service;
+namespace Etobi\Coreapi\Tests\Unit\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -33,14 +33,14 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 /**
  * Class SiteApiServiceTest
  * 
- * @package Etobi\CoreApi\Tests\Unit\Service
+ * @package Etobi\Coreapi\Tests\Unit\Service
  * @author  Stefano Kowalke <blueduck@gmx.net>
- * @coversDefaultClass \Etobi\CoreAPI\Service\SiteApiService
+ * @coversDefaultClass \Etobi\Coreapi\Service\SiteApiService
  */
 class SiteApiServiceTest extends UnitTestCase {
 
 	/**
-	 * @var \Etobi\CoreApi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject $subject
+	 * @var \Etobi\Coreapi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject $subject
 	 */
 	protected $subject;
 
@@ -48,7 +48,7 @@ class SiteApiServiceTest extends UnitTestCase {
 	 * Setup the test
 	 */
 	public function setUp() {
-		$this->subject = $this->getMock('Etobi\\CoreApi\\Service\\SiteApiService', array('dummy'));
+		$this->subject = $this->getMock('Etobi\\Coreapi\\Service\\SiteApiService', array('dummy'));
 	}
 
 	/**
@@ -63,7 +63,7 @@ class SiteApiServiceTest extends UnitTestCase {
 	 * @covers ::getSiteInfo
 	 */
 	public function getSiteInfoReturnsSiteInfo() {
-		$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] = 'CoreApi Testpage';
+		$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] = 'Coreapi Testpage';
 
 		$expectedData = array(
 			'TYPO3 version' => TYPO3_version,
@@ -100,8 +100,8 @@ class SiteApiServiceTest extends UnitTestCase {
 			'Count local installed extensions' => 4
 		);
 
-		/** @var \Etobi\CoreApi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject $subject */
-		$subject = $this->getMock('Etobi\\CoreApi\\Service\\SiteApiService', array('getDiskUsage', 'getDatabaseSize', 'getCountOfExtensions'));
+		/** @var \Etobi\Coreapi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject $subject */
+		$subject = $this->getMock('Etobi\\Coreapi\\Service\\SiteApiService', array('getDiskUsage', 'getDatabaseSize', 'getCountOfExtensions'));
 
 		$subject->expects($this->once())->method('getDiskUsage')->with($data1)->will($this->returnValue($data2));
 		$subject->expects($this->once())->method('getDatabaseSize')->with($data2)->will($this->returnValue($data3));
@@ -126,8 +126,8 @@ class SiteApiServiceTest extends UnitTestCase {
 	 */
 	public function createSysNewsCreateNewsEntry() {
 		$databaseConnectionMock = $this->getMock('TYPO3\CMS\Core\Database\DatabaseConnection', array('exec_INSERTquery'), array(), '', FALSE);
-		/** @var \Etobi\CoreApi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject */
-		$subject = $this->getAccessibleMock('Etobi\\CoreApi\\Service\\SiteApiService', array('getDatabaseHandler'));
+		/** @var \Etobi\Coreapi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject */
+		$subject = $this->getAccessibleMock('Etobi\\Coreapi\\Service\\SiteApiService', array('getDatabaseHandler'));
 
 		$databaseConnectionMock->expects($this->once())->method('exec_INSERTquery')->with('sys_news', array('title' => 'Foo', 'content' => 'Bar', 'tstamp' => $GLOBALS['EXEC_TIME'], 'crdate' => $GLOBALS['EXEC_TIME'], 'cruser_id' => $GLOBALS['BE_USER']->user['uid']));
 		$subject->expects($this->once())->method('getDatabaseHandler')->will($this->returnValue($databaseConnectionMock));
@@ -170,8 +170,8 @@ class SiteApiServiceTest extends UnitTestCase {
 		$data = array();
 
 		$databaseConnectionMock = $this->getMock('TYPO3\CMS\Core\Database\DatabaseConnection', array('sql_query', 'sql_fetch_assoc'), array(), '', FALSE);
-		/** @var \Etobi\CoreApi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject */
-		$subject = $this->getAccessibleMock('Etobi\\CoreApi\\Service\\SiteApiService', array('getDatabaseHandler'));
+		/** @var \Etobi\Coreapi\Service\SiteApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject */
+		$subject = $this->getAccessibleMock('Etobi\\Coreapi\\Service\\SiteApiService', array('getDatabaseHandler'));
 
 		$databaseConnectionMock->expects($this->once())->method('sql_query')->with("SELECT SUM( data_length + index_length ) / 1024 / 1024 AS size FROM information_schema.TABLES WHERE table_schema = '" . TYPO3_db . "'");
 		$databaseConnectionMock->expects($this->once())->method('sql_fetch_assoc')->will($this->returnValue(array('size' => 30.06250000)));
@@ -187,7 +187,7 @@ class SiteApiServiceTest extends UnitTestCase {
 	 */
 	public function getCountOfExtensionsCountsLocalInstalledExtensions() {
 		$data = array();
-		$extensionApiServiceMock = $this->getMock('Etobi\\CoreAPI\\Service\\ExtensionApiService', array('listExtensions'));
+		$extensionApiServiceMock = $this->getMock('Etobi\\Coreapi\\Service\\ExtensionApiService', array('listExtensions'));
 		$extensionApiServiceMock->expects($this->once())->method('listExtensions')->with('Local')->will($this->returnValue($this->getExtensionArrayForCreateUploadFolders()));
 		$objectManagerMock = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array('get'));
 		$objectManagerMock->expects($this->once())->method('get')->will($this->returnValue($extensionApiServiceMock));

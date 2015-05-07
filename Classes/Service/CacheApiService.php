@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -33,7 +33,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class CacheApiService {
 

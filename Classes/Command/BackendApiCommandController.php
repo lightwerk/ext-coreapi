@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Command;
+namespace Etobi\Coreapi\Command;
 
 /***************************************************************
  *  Copyright notice
