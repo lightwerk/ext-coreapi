@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Command;
+namespace Etobi\Coreapi\Command;
 
 /***************************************************************
  *  Copyright notice
@@ -34,7 +34,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class ExtensionApiCommandController extends CommandController {
 
@@ -65,7 +65,7 @@ class ExtensionApiCommandController extends CommandController {
 	}
 
 	/**
-	 * @var \Etobi\CoreAPI\Service\ExtensionApiService
+	 * @var \Etobi\Coreapi\Service\ExtensionApiService
 	 * @inject
 	 */
 	protected $extensionApiService;
@@ -370,7 +370,7 @@ class ExtensionApiCommandController extends CommandController {
 	/**
 	 * Emits packages may have changed signal
 	 *
-	 * @return \Etobi\CoreAPI\Service\ExtensionApiService object
+	 * @return \Etobi\Coreapi\Service\ExtensionApiService object
 	 */
 	protected function emitPackagesMayHaveChangedSignal() {
 		$this->signalSlotDispatcher->dispatch('PackageManagement', 'packagesMayHaveChanged');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -19,7 +19,7 @@ use InvalidArgumentException;
 /**
  * Class DatabaseDryCompare
  * 
- * @package Etobi\CoreAPI\Service
+ * @package Etobi\Coreapi\Service
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
  */

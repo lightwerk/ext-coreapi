@@ -1,6 +1,6 @@
 <?php
 
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -22,7 +22,7 @@ use TYPO3\CMS\Install\Service\SqlExpectedSchemaService;
 /**
  * Class DatabaseCompareAbstract
  * 
- * @package Etobi\CoreAPI\Service
+ * @package Etobi\Coreapi\Service
  * @author  Stefano Kowalke <blueduck@gmx.net>
  */
 abstract class DatabaseComparator {
@@ -122,7 +122,7 @@ abstract class DatabaseComparator {
 		$availableActions = array_flip(
 			$this->objectManager->get(
 				'TYPO3\\CMS\\Extbase\\Reflection\\ClassReflection',
-				'Etobi\\CoreAPI\\Service\\DatabaseComparator'
+				'Etobi\\Coreapi\\Service\\DatabaseComparator'
 			)->getConstants()
 		);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Etobi\CoreApi\Tests\Unit\Service;
+namespace Etobi\Coreapi\Tests\Unit\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -36,14 +36,14 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 /**
  * Class ExtensionApiServiceTest
  * 
- * @package Etobi\CoreApi\Tests\Unit\Service
+ * @package Etobi\Coreapi\Tests\Unit\Service
  * @author  Stefano Kowalke <blueduck@gmx.net>
- * @coversDefaultClass \Etobi\CoreAPI\Service\ExtensionApiService
+ * @coversDefaultClass \Etobi\Coreapi\Service\ExtensionApiService
  */
 class ExtensionApiServiceTest extends UnitTestCase {
 
 	/**
-	 * @var \Etobi\CoreApi\Service\ExtensionApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject
+	 * @var \Etobi\Coreapi\Service\ExtensionApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject
 	 */
 	protected $subject;
 
@@ -96,7 +96,7 @@ class ExtensionApiServiceTest extends UnitTestCase {
 	 * Set the test up
 	 */
 	public function setup() {
-		$this->subject = $this->getAccessibleMock('Etobi\\CoreApi\\Service\\ExtensionApiService', array('dummy'));
+		$this->subject = $this->getAccessibleMock('Etobi\\Coreapi\\Service\\ExtensionApiService', array('dummy'));
 		$this->objectManagerMock = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array('get'));
 		$this->extensionMock = $this->getMock('TYPO3\\CMS\\Extensionmanager\\Domain\\Model\\Extension', array('dummy'));
 
@@ -474,7 +474,7 @@ class ExtensionApiServiceTest extends UnitTestCase {
 	 */
 	public function getExtensionInformationReturnsInformation() {
 		$installUtilityMock = $this->getMock('TYPO3\\CMS\\Extensionmanager\\Utility\\InstallUtility', array('isAvailable', 'isLoaded'));
-		$this->subject = $this->getAccessibleMock('Etobi\\CoreApi\\Service\\ExtensionApiService', array('listExtensions'));
+		$this->subject = $this->getAccessibleMock('Etobi\\Coreapi\\Service\\ExtensionApiService', array('listExtensions'));
 
 		$installUtilityMock->expects($this->once())->method('isAvailable')->with('dummy')->will($this->returnValue(TRUE));
 		$installUtilityMock->expects($this->once())->method('isLoaded')->with('dummy')->will($this->returnValue(TRUE));
@@ -838,7 +838,7 @@ class ExtensionApiServiceTest extends UnitTestCase {
 	 * @expectedException \InvalidArgumentException
 	 * @expectedExceptionMessage Extension "coreapi" cannot be uninstalled!
 	 */
-	public function uninstallExtensionCoreApiThrowsException() {
+	public function uninstallExtensionCoreapiThrowsException() {
 		$this->subject->uninstallExtension('coreapi');
 	}
 
@@ -893,7 +893,7 @@ class ExtensionApiServiceTest extends UnitTestCase {
 			$this->objectManagerMock->expects($this->once())->method('get')->will($this->returnValue($this->configurationMock));
 		}
 
-		$this->subject = $this->getAccessibleMock('Etobi\\CoreApi\\Service\\ExtensionApiService', $methodsToMock);
+		$this->subject = $this->getAccessibleMock('Etobi\\Coreapi\\Service\\ExtensionApiService', $methodsToMock);
 		$this->subject->injectObjectManager($this->objectManagerMock);
 
 		vfsStream::setup('root');

@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -44,7 +44,7 @@ use TYPO3\CMS\Extensionmanager\Utility\Repository\Helper;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class ExtensionApiService {
 
@@ -568,7 +568,7 @@ class ExtensionApiService {
 	 * @return void
 	 */
 	protected function clearCaches() {
-		$cacheApiService = GeneralUtility::makeInstance('Etobi\\CoreAPI\\Service\\CacheApiService');
+		$cacheApiService = GeneralUtility::makeInstance('Etobi\\Coreapi\\Service\\CacheApiService');
 		$cacheApiService->initializeObject();
 		$cacheApiService->clearAllCaches();
 	}

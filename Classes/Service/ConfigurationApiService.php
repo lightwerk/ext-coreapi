@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Service;
+namespace Etobi\Coreapi\Service;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -20,7 +20,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  * Site API service
  *
  * @author Tobias Liebig <tobias.liebig@typo3.org>
- * @package Etobi\CoreAPI\Service\ConfigurationApiService
+ * @package Etobi\Coreapi\Service\ConfigurationApiService
  */
 class ConfigurationApiService {
 

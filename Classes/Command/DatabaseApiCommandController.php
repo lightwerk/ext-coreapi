@@ -1,5 +1,5 @@
 <?php
-namespace Etobi\CoreAPI\Command;
+namespace Etobi\Coreapi\Command;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +31,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
  *
  * @author Georg Ringer <georg.ringer@cyberhouse.at>
  * @author Stefano Kowalke <blueduck@gmx.net>
- * @package Etobi\CoreAPI\Service\SiteApiService
+ * @package Etobi\Coreapi\Service\SiteApiService
  */
 class DatabaseApiCommandController extends CommandController {
 
@@ -62,18 +62,18 @@ class DatabaseApiCommandController extends CommandController {
 	}
 
 	/**
-	 * @var \Etobi\CoreAPI\Service\DatabaseApiService $databaseApiService
+	 * @var \Etobi\Coreapi\Service\DatabaseApiService $databaseApiService
 	 */
 	protected $databaseApiService;
 
 	/**
 	 * Injects the DatabaseApiService object
 	 *
-	 * @param \Etobi\CoreAPI\Service\DatabaseApiService $databaseApiService
+	 * @param \Etobi\Coreapi\Service\DatabaseApiService $databaseApiService
 	 *
 	 * @return void
 	 */
-	public function injectDatabaseApiService(\Etobi\CoreAPI\Service\DatabaseApiService $databaseApiService) {
+	public function injectDatabaseApiService(\Etobi\Coreapi\Service\DatabaseApiService $databaseApiService) {
 		$this->databaseApiService = $databaseApiService;
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Etobi\CoreApi\Tests\Unit\Service;
+namespace Etobi\Coreapi\Tests\Unit\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -33,13 +33,13 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 /**
  * Class CacheApiServiceTest
  * 
- * @package Etobi\CoreApi\Tests\Unit\Service
+ * @package Etobi\Coreapi\Tests\Unit\Service
  * @author  Stefano Kowalke <blueduck@gmx.net>
- * @coversDefaultClass \Etobi\CoreAPI\Service\CacheApiService
+ * @coversDefaultClass \Etobi\Coreapi\Service\CacheApiService
  */
 class CacheApiServiceTest extends UnitTestCase {
 	/**
-	 * @var \Etobi\CoreApi\Service\CacheApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject
+	 * @var \Etobi\Coreapi\Service\CacheApiService|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface $subject
 	 */
 	protected $subject;
 
@@ -62,7 +62,7 @@ class CacheApiServiceTest extends UnitTestCase {
 	 * Setup the test
 	 */
 	public function setup() {
-		$this->subject = $this->getMock('Etobi\\CoreApi\\Service\\CacheApiService', array('clear_cacheCmd'));
+		$this->subject = $this->getMock('Etobi\\Coreapi\\Service\\CacheApiService', array('clear_cacheCmd'));
 		$this->dataHandlerMock = $this->getMock('TYPO3\\CMS\\Core\\DataHandling\\DataHandler', array('clear_cacheCmd'));
 		$this->objectManagerMock = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 		$this->backendUserAuthenticationMock = $this->getMock('TYPO3\\CMS\\Core\\Authentication\\BackendUserAuthentication', array('dummy'));
