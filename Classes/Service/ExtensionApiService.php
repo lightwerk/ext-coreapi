@@ -464,6 +464,21 @@ class ExtensionApiService {
 	}
 
 	/**
+	 * createUploadFolders
+	 *
+	 * @return array
+	 */
+	public function createUploadFolders() {
+		$extensions = $this->listExtensions('Local');
+		$fileHandlingUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extensionmanager\Utility\FileHandlingUtility');
+		foreach ($extensions AS $key => $extension) {
+			$extension['key'] = $key;
+			$fileHandlingUtility->ensureConfiguredDirectoriesExist($extension);
+		}
+		return array('done');
+	}
+
+	/**
 	 * Checks if the function exists in the system
 	 *
 	 * @param string $extensionKey The extension key

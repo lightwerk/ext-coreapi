@@ -9,4 +9,5 @@ if (TYPO3_MODE === 'BE') {
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Etobi\Coreapi\Command\SiteApiCommandController';
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Etobi\Coreapi\Command\ExtensionApiCommandController';
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Etobi\Coreapi\Command\ConfigurationApiCommandController';
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Etobi\Coreapi\Command\ImportExportApiCommandController';
 }
