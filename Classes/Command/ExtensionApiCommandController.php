@@ -368,6 +368,23 @@ class ExtensionApiCommandController extends CommandController {
 	}
 
 	/**
+	 * createUploadFoldersCommand
+	 *
+	 * @return void
+	 */
+	public function createUploadFoldersCommand() {
+		$messages = $this->extensionApiService->createUploadFolders();
+
+		if (sizeof($messages)) {
+			foreach ($messages as $message) {
+				$this->outputLine($message);
+			}
+		} else {
+			$this->outputLine('no uploadFolder created');
+		}
+	}
+
+	/**
 	 * Emits packages may have changed signal
 	 *
 	 * @return \Etobi\Coreapi\Service\ExtensionApiService object
