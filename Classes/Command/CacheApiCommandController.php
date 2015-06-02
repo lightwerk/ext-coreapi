@@ -92,7 +92,7 @@ class CacheApiCommandController extends CommandController {
 	 * @return void
 	 * @throws Etobi\Coreapi\Service\Exception
 	 */
-	public function assureCacheDirectoryIsWritableCommand() {
+	public function assureCacheDirectoryIsWriteableCommand() {
 		try {
 			$this->cacheApiService->assureCacheDirectoryIsWriteable();
 			$message = 'Ok, typo3temp/Cache is writeable';
