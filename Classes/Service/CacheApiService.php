@@ -99,10 +99,31 @@ class CacheApiService {
 	 * Clear all caches.
 	 *
 	 * @param bool $hard
+	 * @throws Etobi\Coreapi\Service\Exception
 	 * @return void
 	 */
 	public function clearAllCaches($hard = FALSE) {
+		try {
+			$this->cacheApiService->assureCacheDirectoryIsWriteable();
+		} catch (\UnexpectedValueException $e) {
+		}
 		!$hard ? $this->dataHandler->clear_cacheCmd('all') : $this->installToolClearCacheService->clearAll();
+	}
+
+	/**
+	 * @throws Exception
+	 * @throws \UnexpectedValueException
+	 * @return void
+	 */
+	public function assureCacheDirectoryIsWriteable() {
+		$cacheDirectory = PATH_site . 'typo3temp/Cache';
+		$recursiveDirectoryIterator = new \RecursiveDirectoryIterator($cacheDirectory);
+		$iterator = new \RecursiveIteratorIterator($recursiveDirectoryIterator);
+		foreach ($iterator AS $splFileInfo) {
+			if ($splFileInfo->isWritable() === FALSE) {
+				throw new Exception($cacheDirectory . ' not writeable', 1433262208);
+			}
+		}
 	}
 
 	/**
