@@ -104,7 +104,7 @@ class CacheApiService {
 	 */
 	public function clearAllCaches($hard = FALSE) {
 		try {
-			$this->cacheApiService->assureCacheDirectoryIsWriteable();
+			$this->assureCacheDirectoryIsWriteable();
 		} catch (\UnexpectedValueException $e) {
 		}
 		!$hard ? $this->dataHandler->clear_cacheCmd('all') : $this->installToolClearCacheService->clearAll();
