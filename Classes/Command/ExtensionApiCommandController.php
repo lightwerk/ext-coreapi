@@ -38,6 +38,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
  */
 class ExtensionApiCommandController extends CommandController {
 
+  const MAXIMUM_LINE_LENGTH = 79;
+
 	/**
 	 * @var \TYPO3\CMS\Core\Log\LogManager $logManager
 	 */
@@ -96,20 +98,22 @@ class ExtensionApiCommandController extends CommandController {
 
 		$this->outputLine('');
 		$this->outputLine('EXTENSION "%s": %s %s', array(strtoupper($key), $data['em_conf']['version'], $data['em_conf']['state']));
-		$this->outputLine(str_repeat('-', self::MAXIMUM_LINE_LENGTH));
+		$this->outputLine(str_repeat('-', $this->output->getMaximumLineLength()));
 
 		$outputInformation = array();
 		$outputInformation['is installed'] = ($data['is_installed'] ? 'yes' : 'no');
-		foreach ($data['em_conf'] as $emConfKey => $emConfValue) {
-			// Skip empty properties
-			if (empty($emConfValue)) {
-				continue;
-			}
-			// Skip properties which are already handled
-			if ($emConfKey === 'title' || $emConfKey === 'version' || $emConfKey === 'state') {
-				continue;
-			}
-			$outputInformation[$emConfKey] = $emConfValue;
+		if (!empty($data['em_conf'])) {
+		  foreach ($data['em_conf'] as $emConfKey => $emConfValue) {
+		    // Skip empty properties
+		    if (empty($emConfValue)) {
+		      continue;
+		    }
+		    // Skip properties which are already handled
+		    if ($emConfKey === 'title' || $emConfKey === 'version' || $emConfKey === 'state') {
+		      continue;
+		    }
+		    $outputInformation[$emConfKey] = $emConfValue;
+		  }
 		}
 
 		foreach ($outputInformation as $outputKey => $outputValue) {
@@ -131,7 +135,7 @@ class ExtensionApiCommandController extends CommandController {
 					}
 				}
 			} else {
-				$description = wordwrap($outputValue, self::MAXIMUM_LINE_LENGTH - 28, PHP_EOL . str_repeat(' ', 28), TRUE);
+				$description = wordwrap($outputValue, $this->output->getMaximumLineLength() - 28, PHP_EOL . str_repeat(' ', 28), TRUE);
 			}
 			$this->outputLine('%-2s%-25s %s', array(' ', $outputKey, $description));
 		}
@@ -162,11 +166,11 @@ class ExtensionApiCommandController extends CommandController {
 		foreach ($extensions as $key => $details) {
 			$title = $key . ' - ' . $details['version'] . '/' . $details['state'];
 			$description = $details['title'];
-			$description = wordwrap($description, self::MAXIMUM_LINE_LENGTH - 43, PHP_EOL . str_repeat(' ', 43), TRUE);
+			$description = wordwrap($description, $this->output->getMaximumLineLength() - 43, PHP_EOL . str_repeat(' ', 43), TRUE);
 			$this->outputLine('%-2s%-40s %s', array(' ', $title, $description));
 		}
 
-		$this->outputLine('%-2s%-40s', array(' ', str_repeat('-', self::MAXIMUM_LINE_LENGTH - 3)));
+		$this->outputLine('%-2s%-40s', array(' ', str_repeat('-', $this->output->getMaximumLineLength() - 3)));
 		$this->outputLine('  Total: ' . count($extensions) . ' extensions');
 		$this->logger->info('extensionApi:listInstalled executed successfully');
 	}
