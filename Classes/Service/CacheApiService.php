@@ -37,6 +37,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CacheApiService {
 
+	const CACHE_DIRECTORY = 'typo3temp';
+
 	/**
 	 * @var \TYPO3\CMS\Core\DataHandling\DataHandler
 	 */
@@ -46,11 +48,6 @@ class CacheApiService {
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
 	 */
 	protected $objectManager;
-
-	/**
-	 * @var \TYPO3\CMS\Install\Service\ClearCacheService
-	 */
-	protected $installToolClearCacheService;
 
 	/**
 	 * @param \TYPO3\CMS\Core\DataHandling\DataHandler $dataHandler
@@ -70,14 +67,6 @@ class CacheApiService {
 		$this->objectManager = $objectManager;
 	}
 
-	/**
-	 * @param \TYPO3\CMS\Install\Service\ClearCacheService $installToolClearCacheService
-	 *
-	 * @return void
-	 */
-	public function injectInstallToolClearCacheService(\TYPO3\CMS\Install\Service\ClearCacheService $installToolClearCacheService) {
-		$this->installToolClearCacheService = $installToolClearCacheService;
-	}
 
 	/**
 	 * Initialize the object.
@@ -99,7 +88,7 @@ class CacheApiService {
 	 * Clear all caches.
 	 *
 	 * @param bool $hard
-	 * @throws Etobi\Coreapi\Service\Exception
+	 * @throws \Etobi\Coreapi\Service\Exception
 	 * @return void
 	 */
 	public function clearAllCaches($hard = FALSE) {
@@ -107,7 +96,7 @@ class CacheApiService {
 			$this->assureCacheDirectoryIsWriteable();
 		} catch (\UnexpectedValueException $e) {
 		}
-		!$hard ? $this->dataHandler->clear_cacheCmd('all') : $this->installToolClearCacheService->clearAll();
+		!$hard ? $this->dataHandler->clear_cacheCmd('all') : $this->clearAllCachesHard();
 	}
 
 	/**
@@ -116,12 +105,12 @@ class CacheApiService {
 	 * @return void
 	 */
 	public function assureCacheDirectoryIsWriteable() {
-		$cacheDirectory = PATH_site . 'typo3temp/Cache';
+		$cacheDirectory = $this->getCacheDirectory();
 		$recursiveDirectoryIterator = new \RecursiveDirectoryIterator($cacheDirectory);
 		$iterator = new \RecursiveIteratorIterator($recursiveDirectoryIterator);
 		foreach ($iterator AS $splFileInfo) {
 			if ($splFileInfo->isWritable() === FALSE) {
-				throw new Exception($cacheDirectory . ' not writeable', 1433262208);
+				throw new Exception($cacheDirectory . ' not writeable ' . $splFileInfo->getRealpath(), 1433262208);
 			}
 		}
 	}
@@ -202,5 +191,55 @@ class CacheApiService {
 	 */
 	protected function clearAllActiveOpcodeCacheWrapper($fileAbsPath) {
 		\TYPO3\CMS\Core\Utility\OpcodeCacheUtility::clearAllActive($fileAbsPath);
+	}
+
+	/**
+	 * This clear cache implementation follows a pretty brutal approach.
+	 * Goal is to reliably get rid of cache entries, even if some broken
+	 * extension is loaded that would kill the backend 'clear cache' action.
+	 *
+	 * Therefor this method "knows" implementation details of the cache
+	 * framework and uses them to clear all file based cache (typo3temp/Cache)
+	 * and database caches (tables prefixed with cf_) manually.
+	 *
+	 * This is the change to the InstallTool->clearAll() method
+	 * This will not happened (so we do not respect different Cache Backends)
+	 *
+	 * After that ext_tables and ext_localconf of extensions are loaded, those
+	 * may register additional caches in the caching framework with different
+	 * backend, and will then clear them with the usual flush() method.
+	 *
+	 * @return void
+	 * @see \TYPO3\CMS\Install\Service\ClearCacheService
+	 */
+	protected function clearAllCachesHard() {
+		$gitDummyFileExists = file_exists($this->getCacheDirectory() . '/.gitdummy');
+		GeneralUtility::flushDirectory($this->getCacheDirectory(), TRUE, TRUE);
+		if ($gitDummyFileExists === TRUE) {
+			touch($this->getCacheDirectory() . '/.gitdummy');
+		}
+
+		$database = $this->getDatabaseConnection();
+		$tables = $database->admin_get_tables();
+		foreach ($tables as $table) {
+			$tableName = $table['Name'];
+			if (substr($tableName, 0, 3) === 'cf_' || substr($tableName, 0, 6) === 'cache_') {
+				$database->exec_TRUNCATEquery($tableName);
+			}
+		}
+	}
+
+	/**
+	 * @return \TYPO3\CMS\Core\Database\DatabaseConnection
+	 */
+	protected function getDatabaseConnection() {
+		return $GLOBALS['TYPO3_DB'];
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getCacheDirectory() {
+		return PATH_site . self::CACHE_DIRECTORY;
 	}
 }
