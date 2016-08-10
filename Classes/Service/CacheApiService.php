@@ -213,7 +213,11 @@ class CacheApiService {
 	 * @see \TYPO3\CMS\Install\Service\ClearCacheService
 	 */
 	protected function clearAllCachesHard() {
+		$gitDummyFileExists = file_exists($this->getCacheDirectory() . '/.gitdummy');
 		GeneralUtility::flushDirectory($this->getCacheDirectory(), TRUE, TRUE);
+		if ($gitDummyFileExists === TRUE) {
+			touch($this->getCacheDirectory() . '/.gitdummy');
+		}
 
 		$database = $this->getDatabaseConnection();
 		$tables = $database->admin_get_tables();
