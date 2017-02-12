@@ -386,6 +386,7 @@ class ExtensionApiCommandController extends CommandController {
 		} else {
 			$this->outputLine('no uploadFolder created');
 		}
+		$this->quit(0);
 	}
 
 	/**
