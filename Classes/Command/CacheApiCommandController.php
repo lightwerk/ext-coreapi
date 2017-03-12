@@ -86,7 +86,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'All caches have been cleared%s.';
 		$this->logger->info($message);
 		$this->outputLine($message, $hard ? array(' hard') : array(''));
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
@@ -104,7 +104,7 @@ class CacheApiCommandController extends CommandController {
 			$this->logger->info($message);
 			$this->outputLine($message);
 		}
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
@@ -117,14 +117,14 @@ class CacheApiCommandController extends CommandController {
 		$message = 'System cache has been cleared';
 		$this->logger->info($message);
 		$this->outputLine($message);
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
 	 * Clears the opcode cache.
 	 *
 	 * @param string|NULL $fileAbsPath The file as absolute path to be cleared
-	 *                                 or NULL to clear completely.
+	 *								 or NULL to clear completely.
 	 *
 	 * @return void
 	 */
@@ -140,7 +140,7 @@ class CacheApiCommandController extends CommandController {
 			$this->outputLine($message);
 			$this->logger->info($message);
 		}
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
@@ -153,7 +153,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'Configuration cache has been cleared.';
 		$this->logger->info($message);
 		$this->outputLine($message);
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
@@ -166,7 +166,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'Page cache has been cleared.';
 		$this->logger->info($message);
 		$this->outputLine($message);
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
@@ -180,6 +180,6 @@ class CacheApiCommandController extends CommandController {
 		$message = 'Cleared caches: ' . implode(', ', $clearedCaches);
 		$this->logger->info($message);
 		$this->outputLine($message);
-        $this->quit(0);
+		$this->quit(0);
 	}
 }

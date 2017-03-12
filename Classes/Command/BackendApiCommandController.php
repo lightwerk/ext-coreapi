@@ -82,7 +82,7 @@ class BackendApiCommandController extends CommandController {
 			$this->outputLine($message);
 			$this->logger->info($message);
 		}
-        $this->quit(0);
+		$this->quit(0);
 	}
 
 	/**
@@ -100,7 +100,7 @@ class BackendApiCommandController extends CommandController {
 				$message = 'Removed lock file \'typo3conf/LOCK_BACKEND\'';
 				$this->outputLine($message);
 				$this->logger->info($message);
-                $this->quit(0);
+				$this->quit(0);
 			}
 		} else {
 			$message = 'No lock file \'typo3conf/LOCK_BACKEND\' was found, hence no lock could be removed.';

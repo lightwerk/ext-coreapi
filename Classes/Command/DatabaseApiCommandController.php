@@ -109,13 +109,13 @@ class DatabaseApiCommandController extends CommandController {
 				$this->outputLine(LF);
 			}
 			$this->logger->info('DB compare executed in dry mode');
-            $this->quit(0);
+			$this->quit(0);
 		} else {
 			if (empty($result)) {
 				$message = 'DB has been compared';
 				$this->outputLine($message);
 				$this->logger->info($message);
-                $this->quit(0);
+				$this->quit(0);
 			} else {
 				$message = vsprintf('DB could not be compared, Error(s): %s', array(LF . implode(LF, $result)));
 				$this->outputLine($message);

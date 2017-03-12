@@ -372,7 +372,7 @@ class ExtensionApiCommandController extends CommandController {
 			$message = sprintf('Extension "%s" has been imported!', $data['extKey']);
 			$this->outputLine($message);
 			$this->logger->info($message);
-            $this->quit(0);
+			$this->quit(0);
 		} catch (Exception $e) {
 			$this->outputLine($e->getMessage());
 			$this->logger->error($e->getMessage());
