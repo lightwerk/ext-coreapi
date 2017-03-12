@@ -94,6 +94,7 @@ class SiteApiCommandController extends CommandController {
 		}
 
 		$this->logger->info('siteApi:info executes successfully.');
+        $this->quit(0);
 	}
 
 	/**
@@ -120,5 +121,6 @@ class SiteApiCommandController extends CommandController {
 			$this->outputLine('News entry NOT created.');
 			$this->quit(1);
 		}
+        $this->quit(0);
 	}
 }

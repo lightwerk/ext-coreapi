@@ -141,6 +141,7 @@ class ExtensionApiCommandController extends CommandController {
 		}
 
 		$this->logger->info('extensionApi:info executes successfully.');
+        $this->quit(0);
 	}
 
 	/**
@@ -173,6 +174,7 @@ class ExtensionApiCommandController extends CommandController {
 		$this->outputLine('%-2s%-40s', array(' ', str_repeat('-', $this->output->getMaximumLineLength() - 3)));
 		$this->outputLine('  Total: ' . count($extensions) . ' extensions');
 		$this->logger->info('extensionApi:listInstalled executed successfully');
+        $this->quit(0);
 	}
 
 	/**
@@ -193,6 +195,7 @@ class ExtensionApiCommandController extends CommandController {
 			$this->outputLine($message);
 			$this->logger->info($message);
 		}
+        $this->quit(0);
 	}
 
 	/**
@@ -216,6 +219,7 @@ class ExtensionApiCommandController extends CommandController {
 		$message = sprintf('Extension "%s" is now installed!', $key);
 		$this->outputLine($message);
 		$this->logger->info($message);
+        $this->quit(0);
 	}
 
 	/**
@@ -238,6 +242,7 @@ class ExtensionApiCommandController extends CommandController {
 		$message = sprintf('Extension "%s" is now uninstalled!', $key);
 		$this->outputLine($message);
 		$this->logger->info($message);
+        $this->quit(0);
 	}
 
 	/**
@@ -300,6 +305,7 @@ class ExtensionApiCommandController extends CommandController {
 		$message = sprintf('Extension "%s" has been configured!', $key);
 		$this->outputLine($message);
 		$this->logger->info($message);
+        $this->quit(0);
 	}
 
 	/**
@@ -319,6 +325,7 @@ class ExtensionApiCommandController extends CommandController {
 			$message = sprintf('Extension "%s" version %s has been fetched from repository! Dependencies were not resolved.', $data['main']['extKey'], $data['main']['version']);
 			$this->outputLine($message);
 			$this->logger->info($message);
+            $this->quit(0);
 		} catch (Exception $e) {
 			$message = $e->getMessage();
 			$this->outputLine($message);
@@ -347,6 +354,7 @@ class ExtensionApiCommandController extends CommandController {
 			$this->quit(1);
 		}
 		$this->logger->info('extensionApi:listMirrors executed successfully.');
+        $this->quit(0);
 	}
 
 	/**
@@ -364,6 +372,7 @@ class ExtensionApiCommandController extends CommandController {
 			$message = sprintf('Extension "%s" has been imported!', $data['extKey']);
 			$this->outputLine($message);
 			$this->logger->info($message);
+            $this->quit(0);
 		} catch (Exception $e) {
 			$this->outputLine($e->getMessage());
 			$this->logger->error($e->getMessage());

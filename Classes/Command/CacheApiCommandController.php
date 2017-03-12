@@ -86,6 +86,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'All caches have been cleared%s.';
 		$this->logger->info($message);
 		$this->outputLine($message, $hard ? array(' hard') : array(''));
+        $this->quit(0);
 	}
 
 	/**
@@ -103,6 +104,7 @@ class CacheApiCommandController extends CommandController {
 			$this->logger->info($message);
 			$this->outputLine($message);
 		}
+        $this->quit(0);
 	}
 
 	/**
@@ -115,6 +117,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'System cache has been cleared';
 		$this->logger->info($message);
 		$this->outputLine($message);
+        $this->quit(0);
 	}
 
 	/**
@@ -137,6 +140,7 @@ class CacheApiCommandController extends CommandController {
 			$this->outputLine($message);
 			$this->logger->info($message);
 		}
+        $this->quit(0);
 	}
 
 	/**
@@ -149,6 +153,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'Configuration cache has been cleared.';
 		$this->logger->info($message);
 		$this->outputLine($message);
+        $this->quit(0);
 	}
 
 	/**
@@ -161,6 +166,7 @@ class CacheApiCommandController extends CommandController {
 		$message = 'Page cache has been cleared.';
 		$this->logger->info($message);
 		$this->outputLine($message);
+        $this->quit(0);
 	}
 
 	/**
@@ -174,5 +180,6 @@ class CacheApiCommandController extends CommandController {
 		$message = 'Cleared caches: ' . implode(', ', $clearedCaches);
 		$this->logger->info($message);
 		$this->outputLine($message);
+        $this->quit(0);
 	}
 }
