@@ -57,5 +57,6 @@ class ImportExportApiCommandController extends CommandController {
 		foreach ($messages AS $message) {
 			$this->outputLine($message);
 		}
+		$this->quit(0);
 	}
 }

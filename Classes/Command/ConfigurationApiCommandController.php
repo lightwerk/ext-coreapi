@@ -47,6 +47,7 @@ class ConfigurationApiCommandController extends CommandController {
 	 */
 	public function listCommand() {
 		$this->outputLine(json_encode($this->configurationApiService->getConfigurationArray()));
+		$this->quit(0);
 	}
 
 	/**
@@ -57,5 +58,6 @@ class ConfigurationApiCommandController extends CommandController {
 	 */
 	public function showCommand($key) {
 		$this->outputLine(json_encode($this->configurationApiService->getValue($key)));
+		$this->quit(0);
 	}
 }
